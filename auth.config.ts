@@ -11,7 +11,6 @@ export const authConfig = {
       if (nextUrl.pathname.startsWith("/example")) {
         return isLoggedIn;
       }
-
       return true;
     },
   },
