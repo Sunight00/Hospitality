@@ -24,23 +24,18 @@ export default function LoginForm() {
   return (
     <form action={formAction} className="w-full max-w-md space-y-4">
 
-      {/* CARD */}
+
       <div className="rounded-2xl bg-white shadow-lg border border-gray-100 px-8 py-10">
 
-        {/* HEADER */}
+
         <h1 className="text-2xl font-semibold text-gray-800">
           Please log in to continue
         </h1>
 
-        <p className="mt-1 text-sm text-gray-500">
-          Authorized hospital staff only
-        </p>
+        <p className="mt-1 text-sm text-gray-500">Authorized hospital staff only</p>
 
-        {/* EMAIL */}
         <div className="mt-6">
-          <label className="mb-2 block text-xs font-medium text-gray-700">
-            Email
-          </label>
+          <label className="mb-2 block text-xs font-medium text-gray-700">Email</label>
 
           <div className="relative">
             <input
@@ -56,11 +51,9 @@ export default function LoginForm() {
           </div>
         </div>
 
-        {/* PASSWORD */}
         <div className="mt-4">
-          <label className="mb-2 block text-xs font-medium text-gray-700">
-            Password
-          </label>
+          <label className="mb-2 block text-xs font-medium text-gray-700">Password</label>
+
 
           <div className="relative">
             <input
@@ -70,7 +63,7 @@ export default function LoginForm() {
               name="password"
               placeholder="Enter password"
               required
-              minLength={6}
+              minLength={12}
             />
 
             <KeyIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-400 peer-focus:text-blue-600" />
@@ -104,10 +97,7 @@ export default function LoginForm() {
         </div>
       </div>
       <div className="mt-4 text-center">
-        <Link
-          href="/forgot-password"
-          className="text-sm text-blue-600 hover:text-blue-800 transition"
-        >
+        <Link href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-800 transition">
           Forgot your password?
         </Link>
       </div>
