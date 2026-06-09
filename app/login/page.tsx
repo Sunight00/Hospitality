@@ -1,21 +1,33 @@
+'use client';
 
 import LoginForm from '@/app/ui/login-form';
-import { Suspense } from 'react';
- 
+
 export default function LoginPage() {
   return (
-    <main className="flex items-center justify-center md:h-screen">
-      <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">
-        <div className="flex h-20 w-full items-end rounded-lg bg-blue-500 p-3 md:h-36">
-          <div className="w-32 text-white md:w-36">
-            {/*<AcmeLogo />*/}
+    <div className="min-h-screen flex bg-gray-50">
+
+      {/* LEFT SIDE - HOSPITAL BRAND PANEL */}
+      <div className="hidden md:flex w-1/2 bg-blue-600 text-white items-center justify-center p-12">
+        <div className="max-w-md">
+          <h1 className="text-4xl font-bold">Hospital Management System</h1>
+
+          <p className="mt-4 text-blue-100 text-sm leading-relaxed">
+            Secure access to patient records, prescriptions, billing,
+            inventory, and hospital operations. Built for medical staff only.
+          </p>
+
+          <div className="mt-8 text-blue-100 text-xs space-y-1">
+            <p>✔ Role-based access control</p>
+            <p>✔ Encrypted medical data</p>
+            <p>✔ Secure authentication system</p>
           </div>
         </div>
-        <Suspense>
-          <LoginForm />
-        </Suspense>
       </div>
-    </main>
+
+      {/* RIGHT SIDE - LOGIN FORM */}
+      <div className="w-full md:w-1/2 flex items-center justify-center p-6">
+        <LoginForm />
+      </div>
+    </div>
   );
-  
 }
