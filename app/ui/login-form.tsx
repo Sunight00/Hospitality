@@ -13,8 +13,8 @@ import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
 export default function LoginForm() {
-  //const searchParams = useSearchParams();
-  //const callbackUrl = searchParams.get('callbackUrl') || '/';
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
 
   const [errorMessage, formAction, isPending] = useActionState(
     authenticate,
@@ -71,7 +71,7 @@ export default function LoginForm() {
         </div>
 
         {/* HIDDEN CALLBACK */}
-        {/* <input type="hidden" name="redirectTo" value={callbackUrl} /> */}
+        <input type="hidden" name="redirectTo" value={callbackUrl} /> 
 
         {/* BUTTON */}
         <Button

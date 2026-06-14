@@ -6,22 +6,37 @@ import type { User } from '@/app/lib/definitions';
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
 import GoogleProvider from 'next-auth/providers/google';
+import { prisma } from "@/app/lib/prisma";
 /*PERSONAL STUDIES APPLYIOONG GOOGLE AUTHENTICATION PROVIDER IN NEXTAUTH.JS*/
 
 
  
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
- 
+
+
 async function getUser(email: string): Promise<User | undefined> {
   try {
-    const user = await sql<User[]>`SELECT * FROM users WHERE email=${email}`;
+    const user = await prisma.user.findUnique({
+      where: { email },
+    });
+
+    return user ?? undefined;
+  } catch (error) {
+    console.error('Failed to fetch user:', error);
+    throw new Error('Failed to fetch user.');
+  }
+}
+/*async function getUser(email: string): Promise<User | undefined> {
+  try {
+    const user = await sql<User[]>`SELECT * FROM public."User" WHERE email=${email}`;
+
     console.log('Fetched user:', user);
     return user[0];
   } catch (error) {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
   }
-}
+}*/
  
 export const { handlers, auth, signIn, signOut } = NextAuth({
   ...authConfig,
@@ -43,6 +58,16 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         return null;
       },
     }),
+
+
+
+
+
+
+
+
+
+    // Google authentication provider
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
