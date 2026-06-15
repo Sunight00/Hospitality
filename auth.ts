@@ -2,18 +2,18 @@ import NextAuth from 'next-auth';
 import Credentials from 'next-auth/providers/credentials';
 import { authConfig } from './auth.config';
 import { z } from 'zod';
-import type { User } from '@/app/lib/definitions';
+//import type { User } from '@/app/lib/definitions';++++++
 import bcrypt from 'bcrypt';
 import postgres from 'postgres';
 import GoogleProvider from 'next-auth/providers/google';
-import { prisma } from "@/app/lib/prisma";
+//import { prisma } from "@/app/lib/prisma";++
 /*PERSONAL STUDIES APPLYIOONG GOOGLE AUTHENTICATION PROVIDER IN NEXTAUTH.JS*/
 
 
  
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
-
+/*
 async function getUser(email: string): Promise<User | undefined> {
   try {
     const user = await prisma.user.findUnique({
@@ -25,7 +25,7 @@ async function getUser(email: string): Promise<User | undefined> {
     console.error('Failed to fetch user:', error);
     throw new Error('Failed to fetch user.');
   }
-}
+}+++++++++*/
 /*async function getUser(email: string): Promise<User | undefined> {
   try {
     const user = await sql<User[]>`SELECT * FROM public."User" WHERE email=${email}`;
@@ -44,7 +44,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
     Credentials({
       async authorize(credentials) {
         const parsedCredentials = z
-          .object({ email: z.string().email(), password: z.string().min(12) })
+          .object({ email: z.string().email(), password: z.string().min(12).regex(/[A-Z]/).regex(/[a-z]/).regex(/[0-9]/).regex(/[^A-Za-z0-9]/) })
           .safeParse(credentials);
  
         if (parsedCredentials.success) {
