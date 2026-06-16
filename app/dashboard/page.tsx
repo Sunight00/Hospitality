@@ -1,8 +1,9 @@
-import Link from 'next/link';
+import UniNav from '@/app/ui/nav/uniNav';
+
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-
+    <main className="">
+      <UniNav />
     </main>
   );
 }
